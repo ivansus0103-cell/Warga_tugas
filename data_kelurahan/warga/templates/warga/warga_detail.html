@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detail Warga</title>
+</head>
+<body>
+    <h1>Detail Warga</h1>
+    <p>Nama Lengkap: {{ warga.nama_lengkap }}</p>
+    <p>NIK: {{ warga.nik }}</p>
+    <p>Alamat: {{ warga.alamat }}</p>
+    <p>Nomor Telepon: {{ warga.no_telepon }}</p>
+    <a href="{% url 'warga_list' %}">← Kembali ke daftar</a>
+</body>
+</html>
