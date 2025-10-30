@@ -5,6 +5,8 @@
 </head>
 <body>
     <h1>Detail Warga</h1>
+    <a href="{% url 'warga_edit' object.pk %}">Edit Data</a> | 
+    <a href="{% url 'warga_hapus' object.pk %}">Hapus Data</a>
     <p>Nama Lengkap: {{ warga.nama_lengkap }}</p>
     <p>NIK: {{ warga.nik }}</p>
     <p>Alamat: {{ warga.alamat }}</p>

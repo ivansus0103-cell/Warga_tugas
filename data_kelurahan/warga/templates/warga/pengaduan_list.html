@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Daftar Pengaduan Kelurahan</title>
+    <a href="{% url 'pengaduan_tambah' %}">Tambah pengaduan Baru</a>
 </head>
 <body>
     <h1>Daftar Semua Pengaduan Warga</h1>
@@ -9,11 +10,15 @@
     <ul>
         {% for aduan in pengaduan_list %}
             <li>
+                
+                <a href="{% url 'pengaduan_edit' aduan.pk %}">Edit</a> |
+                <a href="{% url 'pengaduan_delete' aduan.pk %}">Hapus</a>
                 <strong>{{ aduan.judul }}</strong> — oleh {{ aduan.pelapor.nama_lengkap }}
                 <br>
                 <em>Status:</em> {{ aduan.get_status_display }}
                 <p>{{ aduan.deskripsi }}</p>
                 <small>Ditulis pada: {{ aduan.tanggal_lapor|date:"d M Y H:i" }}</small>
+
             </li>
         {% empty %}
             <li>Belum ada pengaduan yang dibuat.</li>
