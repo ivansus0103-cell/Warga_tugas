@@ -1,11 +1,11 @@
 from django.urls import path, include
-from .views import WargaListAPIView, WargaDetailAPIView, PengaduanListAPIView , PengaduanDetailAPIView, WargaViewSet
+from .views import WargaListAPIView, WargaDetailAPIView, PengaduanListAPIView , PengaduanDetailAPIView, WargaViewSet ,PengaduanViewSet
 from rest_framework.routers import DefaultRouter
 
 
 router = DefaultRouter()
 router.register(r'warga', WargaViewSet, basename='warga')
-router.register(r'pengaduan', WargaViewSet, basename='pengaduan')
+router.register(r'pengaduan', PengaduanViewSet, basename='pengaduan')
 
 urlpatterns = [
     path('', include(router.urls)),

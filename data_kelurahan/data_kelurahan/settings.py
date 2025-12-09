@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'warga',
     'rest_framework',
     'rest_framework.authtoken',
+     'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -126,10 +127,20 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASS':[
-        'rest-framework.authentication.TokenAuthentication',
+    # 1. KOREKSI: Gunakan 'DEFAULT_AUTHENTICATION_CLASSES' (plural)
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        # 2. KOREKSI: Gunakan 'rest_framework' (dengan underscore)
+        'rest_framework.authentication.SessionAuthentication', 
+        'rest_framework.authentication.TokenAuthentication', 
     ],
     'DEFAULT_PERMISSION_CLASSES':[
         'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 1,
+
+    'DEFAULT_RENDERER_CLASSES':[
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
     ],
 }
