@@ -7,7 +7,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import Warga, Pengaduan
 from .forms import WargaForm, PengaduanForm
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser, AllowAny
 from rest_framework.filters import SearchFilter, OrderingFilter 
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from .serializers import WargaSerializer, PengaduanSerializer
@@ -82,7 +82,7 @@ class PengaduanDetailAPIView(RetrieveAPIView):
 class WargaViewSet(viewsets.ModelViewSet):
     queryset = Warga.objects.all().order_by('-tanggal_registrasi')
     serializer_class = WargaSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [AllowAny]
 
     # --- Tambahkan konfigurasi di bawah ini ---
     filter_backends = [SearchFilter, OrderingFilter]
@@ -92,7 +92,7 @@ class WargaViewSet(viewsets.ModelViewSet):
 class PengaduanViewSet(viewsets.ModelViewSet):
     queryset = Pengaduan.objects.all().order_by('-tanggal_lapor')
     serializer_class = PengaduanSerializer # Pastikan serializer-nya benar!
-    permission_classes = [IsAdminUser]
+    permission_classes = [AllowAny]
 
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ['judul', 'tanggal_lapor']
